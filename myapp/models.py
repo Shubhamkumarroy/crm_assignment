@@ -9,6 +9,7 @@ class User_detail(models.Model):
     user_detail_phone = models.TextField()
     user_detail_otp = models.TextField()
     user_detail_password = models.TextField()
+    check_admin_user= models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.user_detail_name} ({self.user_detail_email})"
@@ -22,6 +23,21 @@ class Customer(models.Model):
     phone = models.TextField()
     gstnumber = models.TextField()
     mailreminder = models.TextField()
+
+
+    def __str__(self):
+        return f"{self.name} ({self.email})"
+    
+class Newcustomer(models.Model):
+    username = models.TextField()
+    name = models.TextField()
+    email = models.TextField()
+    address = models.TextField()
+    phone = models.TextField()
+    gstnumber = models.TextField()
+    mailreminder = models.TextField()
+    manager = models.ForeignKey(User_detail, on_delete=models.CASCADE, related_name='newcustomers')
+
 
     def __str__(self):
         return f"{self.name} ({self.email})"

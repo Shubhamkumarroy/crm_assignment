@@ -60,11 +60,21 @@
 <body>
     <div class="bg-dark text-bg-dark py-4 px-2 text-center d-flex justify-content-between px-4" >
 
-        <h2 class="text-bg-dark ">Welcome {{user.username}}! have conversation with {{receiver1.username}}.</h2>
-        <div>
-            <a href="{% url "logoutuser" %}"><button class="btn btn-primary">Logout</button></a>
-            
+        <h2 class="text-bg-dark ">Welcome {{user.username}}! have conversation with {{receiver1.user_detail_name}}.</h2>
+        {% if receiver1.check_admin_user == False %}
+        <div class='d-flex gap-2'>
+            <div>
+                <a href="{% url "dashboard" %}"><button class="btn btn-primary">Dashboard</button></a>
+                
+            </div>
+            {% endif %}
+            <div>
+                <a href="{% url "logoutuser" %}"><button class="btn btn-primary">Logout</button></a>
+                
+            </div>
+
         </div>
+        
     </div>
     <div id="chat-container">
         <div id="chat-messages">
